@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailSendException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,11 +40,14 @@ public class EmailController {
 
         System.out.println("Mensaje Recibido " + email);
 
-        emailService.sendEmail(email);
-
-        Map<String, String> response = new HashMap<>();
-        response.put("estado", "Enviado");
-
-        return ResponseEntity.ok(response);
+        try {
+            emailService.sendEmail(email);
+            Map<String, String> response = new HashMap<>();
+            response.put("estado", "Enviado");
+            return ResponseEntity.ok(response);
+        } catch (MailSendException e) {
+            String errorMessage = "Error al enviar el correo. Verifique la dirección de correo electrónico.";
+            return new ResponseEntity<>(new Message(errorMessage), HttpStatus.BAD_REQUEST);
+        }
     }
 }
