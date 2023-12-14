@@ -23,7 +23,8 @@ public class EmailServiceImpl implements IEmailService{
         SimpleMailMessage messageToSender = new SimpleMailMessage();
         messageToSender.setTo(emailDTO.getEmail()); // Usar el email del remitente
         messageToSender.setSubject("Mensaje enviado con éxito");
-        messageToSender.setText("Su mensaje ha sido enviado con éxito. Gracias por contactarnos.");
+        messageToSender.setText("Su mensaje ha sido enviado con éxito, en la brevedad será" +
+                " respondido. Gracias por contactarnos.");
 
         mailSender.send(messageToSender);
     }
