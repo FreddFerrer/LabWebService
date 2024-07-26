@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.shadow-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .invert-logo {
+    filter: invert(1);
+  }
+
+body {
+  background: linear-gradient(to right, #7bc2b0, #e5f9f6);
+
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle, #7bc2b0 0%, #4d433f 10%, transparent 40%);
+}
